@@ -1,0 +1,616 @@
+<div>
+
+  <p class="navbar-fixed-top" style="padding: 7px 15px; font-size:12px; background-color: #F5F5F5;">
+  Search:  &nbsp;
+  <input type="text" ng-model="query">&nbsp;&nbsp;
+  <a href="#/v1" class="btn btn-default"  style="font-size:10px">RESET</a>
+  </p>
+  
+  <table id="mytable" cellspacing="0" class="table">
+    <tbody>
+      <tr>
+        <th abbr="Course">
+          Course</th>
+        <th abbr="Title">
+          Title</th>
+        <th abbr="Instructor">
+          Instructor</th>
+        <th abbr="Req">
+          Req</th>
+        <th abbr="Sess">
+          Sess</th>
+        <th abbr="Time">
+          Time</th>
+        <th abbr="Points">
+          Points</th>
+        <th abbr="Location">
+          Location</th>
+        <th abbr="Call">
+          Call</th>
+      </tr>
+      
+      <tr ng-controller="CollapseDemoCtrl" ng-repeat="i in myData | filter:query | filter: {type: 'ARCH'} | orderBy:['type','Course', 'Sess']">
+
+        <th abbr="Course">
+	  <button class="btn btn-default" style="font-size:inherit;" ng-click="isCollapsed = !isCollapsed">
+	    {{i.Course}}</button>
+          </th>
+        <td abbr="Title" style="width: 400px">
+          <span style="display:none">{{i.type}}</span> {{i.Title}}
+	
+	  <div collapse="isCollapsed">
+	    <div class="well well-lg">
+	      <a href = "http://www.columbia.edu/cu/bulletin/uwb/subj/{{i.SchoolCode}}/A{{i.blink}}" target="_blank">
+		<strong>Link to Bulletin Page</strong></a>
+	      <br>
+	      <br>
+	  <strong>Available Syllabi:</strong>
+	  <ul>
+	    <li>
+	      <a href = "https://courseworks.columbia.edu/public/{{i.cwlink}}/" target="_blank">
+		<strong>Link to Courseworks (Syllabus)</strong></a>
+	    </li>
+	    <li ng-repeat="item in i.Syllabi | orderObjectBy:'wn':true">
+	      <a href = "http://www.columbia.edu/cu/arch/courses/syllabi/{{item.dir}}/{{item.pdfn}}" target="_blank"> {{item.wn}} </a>
+	    </li>
+	  </ul>
+	  
+	    </div> 
+	  </div>
+	  
+	</td>
+<!-- 1. "Instructor" changed to a button to dsiplay the studio documents similar to the Syllabi documents -->
+
+
+        <td abbr="Instructor" style="width: 400px">
+	  <button class="btn btn-default" style="font-size:inherit;" ng-click="isCollapsed1 = !isCollapsed1">
+      {{i.Instructor}}</button>
+
+          <span style="display:none">{{i.type}}</span> 
+	
+	  <div collapse="!isCollapsed1">
+	    <div class="well well-lg">
+	  <strong>Images:</strong>
+	  <ul>
+	    <li ng-repeat="item in i.images | orderObjectBy:'wn':true">
+	      <a href = "http://www.columbia.edu/cu/arch/courses/images/{{item.dir}}/{{item.pdfn}}" target="_blank"> {{item.wn}}_{{$index + 1}} </a>
+	    </li>
+	  </ul>
+<!-- 2. Added syllabi section under the Images section for the instrcutors to add their own syllabi documents along with the images - intended only for studio documents -->
+      <strong>Instructor's Previous Syllabi:</strong>
+	  <ul>
+	    <li ng-repeat="item in i.facsyl | orderObjectBy:'wn':true">
+	      <a href = "http://www.columbia.edu/cu/arch/courses/facsyl/{{item.dir}}/{{item.pdfn}}" target="_blank"> {{item.wn}} </a>
+	    </li>
+	  </ul>
+	  <br>
+	    </div> 
+	  </div>
+	</td>
+    
+<!-- End of changes 1 -->
+
+        <td abbr="Req">
+          {{i.Req}}</td>
+        <td abbr="Sess" class="centerText">
+          {{i.Sess}}</td>
+        <td abbr="Time">
+          {{i.Time}}</td>
+        <td abbr="Points" class="centerText">
+          {{i.Points}}</td>
+        <td abbr="Location">
+          {{i.Location}}</td>
+        <td abbr="Call">
+          {{i.Call}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4>Visual Studies</h4>
+
+  <table id="mytable" cellspacing="0" class="table">
+    <tbody>
+      <tr>
+        <th abbr="Course">
+          Course</th>
+        <th abbr="Title">
+          Title</th>
+        <th abbr="Instructor">
+          Instructor</th>
+        <th abbr="Req">
+          Req</th>
+        <th abbr="Sess">
+          Sess</th>
+        <th abbr="Time">
+          Time</th>
+        <th abbr="Points">
+          Points</th>
+        <th abbr="Location">
+          Location</th>
+        <th abbr="Call">
+          Call</th>
+      </tr>
+      
+      <tr ng-controller="CollapseDemoCtrl" ng-repeat="i in myData | filter:query | filter: {type: 'VS'} | orderBy:['type','Course', 'Sess']">
+
+        <th abbr="Course">
+	  <button class="btn btn-default" style="font-size:inherit;" ng-click="isCollapsed = !isCollapsed">
+	    {{i.Course}}</button>
+          </th>
+        <td abbr="Title" style="width: 400px">
+          <span style="display:none">{{i.type}}</span> {{i.Title}}
+	
+	  <div collapse="isCollapsed">
+	    <div class="well well-lg">
+	      <a href = "http://www.columbia.edu/cu/bulletin/uwb/subj/{{i.SchoolCode}}/A{{i.blink}}" target="_blank">
+		<strong>Link to Bulletin Page</strong></a>
+	      <br>
+	      <br>
+	  <strong>Available Syllabi:</strong>
+	  <ul>
+	    <li>
+	      <a href = "https://courseworks.columbia.edu/public/{{i.cwlink}}/" target="_blank">
+		<strong>Link to Courseworks (Syllabus)</strong></a>
+	    </li>
+	    <li ng-repeat="item in i.Syllabi | orderObjectBy:'wn':true">
+	      <a href = "http://www.columbia.edu/cu/arch/courses/syllabi/{{item.dir}}/{{item.pdfn}}" target="_blank"> {{item.wn}} </a>
+	    </li>
+	  </ul>
+	  
+	    </div> 
+	  </div>
+	
+	</td>
+<!-- 1. "Instructor" changed to a button to dsiplay the studio documents similar to the Syllabi documents -->
+
+
+        <td abbr="Instructor" style="width: 400px">
+	  <button class="btn btn-default" style="font-size:inherit;" ng-click="isCollapsed1 = !isCollapsed1">
+      {{i.Instructor}}</button>
+
+          <span style="display:none">{{i.type}}</span> 
+	
+	  <div collapse="!isCollapsed1">
+	    <div class="well well-lg">
+	  <strong>Images:</strong>
+	  <ul>
+	    <li ng-repeat="item in i.images | orderObjectBy:'wn':true">
+	      <a href = "http://www.columbia.edu/cu/arch/courses/images/{{item.dir}}/{{item.pdfn}}" target="_blank"> {{item.wn}}_{{$index + 1}} </a>
+	    </li>
+	  </ul>
+<!-- 2. Added syllabi section under the Images section for the instrcutors to add their own syllabi documents along with the images - intended only for studio documents -->
+      <strong>Instructor's Previous Syllabi:</strong>
+	  <ul>
+	    <li ng-repeat="item in i.facsyl | orderObjectBy:'wn':true">
+	      <a href = "http://www.columbia.edu/cu/arch/courses/facsyl/{{item.dir}}/{{item.pdfn}}" target="_blank"> {{item.wn}} </a>
+	    </li>
+	  </ul>
+	  <br>
+	    </div> 
+	  </div>
+	</td>
+    
+<!-- End of changes 1 -->
+        <td abbr="Req">
+          {{i.Req}}</td>
+        <td abbr="Sess" class="centerText">
+          {{i.Sess}}</td>
+        <td abbr="Time">
+          {{i.Time}}</td>
+        <td abbr="Points" class="centerText">
+          {{i.Points}}</td>
+        <td abbr="Location">
+          {{i.Location}}</td>
+        <td abbr="Call">
+          {{i.Call}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4>Historic Preservation</h4>
+
+  <table id="mytable" cellspacing="0" class="table">
+    <tbody>
+      <tr>
+        <th abbr="Course">
+          Course</th>
+        <th abbr="Title">
+          Title</th>
+        <th abbr="Instructor">
+          Instructor</th>
+        <th abbr="Req">
+          Req</th>
+        <th abbr="Sess">
+          Sess</th>
+        <th abbr="Time">
+          Time</th>
+        <th abbr="Points">
+          Points</th>
+        <th abbr="Location">
+          Location</th>
+        <th abbr="Call">
+          Call</th>
+      </tr>
+      
+      <tr ng-controller="CollapseDemoCtrl" ng-repeat="i in myData | filter:query | filter: {type: 'HP'} | orderBy:['type','Course', 'Sess']">
+
+        <th abbr="Course">
+	  <button class="btn btn-default" style="font-size:inherit;" ng-click="isCollapsed = !isCollapsed">
+	    {{i.Course}}</button>
+          </th>
+        <td abbr="Title" style="width: 400px">
+          <span style="display:none">{{i.type}}</span> {{i.Title}}
+	
+	  <div collapse="isCollapsed">
+	    <div class="well well-lg">
+	      <a href = "http://www.columbia.edu/cu/bulletin/uwb/subj/{{i.SchoolCode}}/A{{i.blink}}" target="_blank">
+		<strong>Link to Bulletin Page</strong></a>
+	      <br>
+	      <br>
+	  <strong>Available Syllabi:</strong>
+	  <ul>
+	    <li>
+	      <a href = "https://courseworks.columbia.edu/public/{{i.cwlink}}/" target="_blank">
+		<strong>Link to Courseworks (Syllabus)</strong></a>
+	    </li>
+	    <li ng-repeat="item in i.Syllabi | orderObjectBy:'wn':true">
+	      <a href = "http://www.columbia.edu/cu/arch/courses/syllabi/{{item.dir}}/{{item.pdfn}}" target="_blank"> {{item.wn}} </a>
+	    </li>
+	  </ul>
+	  
+	    </div> 
+	  </div>
+	
+	</td>
+<!-- 1. "Instructor" changed to a button to dsiplay the studio documents similar to the Syllabi documents -->
+
+
+        <td abbr="Instructor" style="width: 400px">
+	  <button class="btn btn-default" style="font-size:inherit;" ng-click="isCollapsed1 = !isCollapsed1">
+      {{i.Instructor}}</button>
+
+          <span style="display:none">{{i.type}}</span> 
+	
+	  <div collapse="!isCollapsed1">
+	    <div class="well well-lg">
+	  <strong>Images:</strong>
+	  <ul>
+	    <li ng-repeat="item in i.images | orderObjectBy:'wn':true">
+	      <a href = "http://www.columbia.edu/cu/arch/courses/images/{{item.dir}}/{{item.pdfn}}" target="_blank"> {{item.wn}}_{{$index + 1}} </a>
+	    </li>
+	  </ul>
+<!-- 2. Added syllabi section under the Images section for the instrcutors to add their own syllabi documents along with the images - intended only for studio documents -->
+      <strong>Instructor's Previous Syllabi:</strong>
+	  <ul>
+	    <li ng-repeat="item in i.facsyl | orderObjectBy:'wn':true">
+	      <a href = "http://www.columbia.edu/cu/arch/courses/facsyl/{{item.dir}}/{{item.pdfn}}" target="_blank"> {{item.wn}} </a>
+	    </li>
+	  </ul>
+	  <br>
+	    </div> 
+	  </div>
+	</td>
+    
+<!-- End of changes 1 -->
+        <td abbr="Req">
+          {{i.Req}}</td>
+        <td abbr="Sess" class="centerText">
+          {{i.Sess}}</td>
+        <td abbr="Time">
+          {{i.Time}}</td>
+        <td abbr="Points" class="centerText">
+          {{i.Points}}</td>
+        <td abbr="Location">
+          {{i.Location}}</td>
+        <td abbr="Call">
+          {{i.Call}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h4>Urban Planning</h4>
+
+  <table id="mytable" cellspacing="0" class="table">
+    <tbody>
+      <tr>
+        <th abbr="Course">
+          Course</th>
+        <th abbr="Title">
+          Title</th>
+        <th abbr="Instructor">
+          Instructor</th>
+        <th abbr="Req">
+          Req</th>
+        <th abbr="Sess">
+          Sess</th>
+        <th abbr="Time">
+          Time</th>
+        <th abbr="Points">
+          Points</th>
+        <th abbr="Location">
+          Location</th>
+        <th abbr="Call">
+          Call</th>
+      </tr>
+      
+      <tr ng-controller="CollapseDemoCtrl" ng-repeat="i in myData | filter:query | filter: {type: 'UP'} | orderBy:['type','Course', 'Sess']">
+
+        <th abbr="Course">
+	  <button class="btn btn-default" style="font-size:inherit;" ng-click="isCollapsed = !isCollapsed">
+	    {{i.Course}}</button>
+          </th>
+        <td abbr="Title" style="width: 400px">
+          <span style="display:none">{{i.type}}</span> {{i.Title}}
+	
+	  <div collapse="isCollapsed">
+	    <div class="well well-lg">
+	      <a href = "http://www.columbia.edu/cu/bulletin/uwb/subj/{{i.SchoolCode}}/A{{i.blink}}" target="_blank">
+		<strong>Link to Bulletin Page</strong></a>
+	      <br>
+	      <br>
+	  <strong>Available Syllabi:</strong>
+	  <ul>
+	    <li>
+	      <a href = "https://courseworks.columbia.edu/public/{{i.cwlink}}/" target="_blank">
+		<strong>Link to Courseworks (Syllabus)</strong></a>
+	    </li>
+	    <li ng-repeat="item in i.Syllabi | orderObjectBy:'wn':true">
+	      <a href = "http://www.columbia.edu/cu/arch/courses/syllabi/{{item.dir}}/{{item.pdfn}}" target="_blank"> {{item.wn}} </a>
+	    </li>
+	  </ul>
+	  
+	    </div> 
+	  </div>
+	
+	</td>
+<!-- 1. "Instructor" changed to a button to dsiplay the studio documents similar to the Syllabi documents -->
+
+
+        <td abbr="Instructor" style="width: 400px">
+	  <button class="btn btn-default" style="font-size:inherit;" ng-click="isCollapsed1 = !isCollapsed1">
+      {{i.Instructor}}</button>
+
+          <span style="display:none">{{i.type}}</span> 
+	
+	  <div collapse="!isCollapsed1">
+	    <div class="well well-lg">
+	  <strong>Images:</strong>
+	  <ul>
+	    <li ng-repeat="item in i.images | orderObjectBy:'wn':true">
+	      <a href = "http://www.columbia.edu/cu/arch/courses/images/{{item.dir}}/{{item.pdfn}}" target="_blank"> {{item.wn}}_{{$index + 1}} </a>
+	    </li>
+	  </ul>
+<!-- 2. Added syllabi section under the Images section for the instrcutors to add their own syllabi documents along with the images - intended only for studio documents -->
+      <strong>Instructor's Previous Syllabi:</strong>
+	  <ul>
+	    <li ng-repeat="item in i.facsyl | orderObjectBy:'wn':true">
+	      <a href = "http://www.columbia.edu/cu/arch/courses/facsyl/{{item.dir}}/{{item.pdfn}}" target="_blank"> {{item.wn}} </a>
+	    </li>
+	  </ul>
+	  <br>
+	    </div> 
+	  </div>
+	</td>
+    
+<!-- End of changes 1 -->
+        <td abbr="Req">
+          {{i.Req}}</td>
+        <td abbr="Sess" class="centerText">
+          {{i.Sess}}</td>
+        <td abbr="Time">
+          {{i.Time}}</td>
+        <td abbr="Points" class="centerText">
+          {{i.Points}}</td>
+        <td abbr="Location">
+          {{i.Location}}</td>
+        <td abbr="Call">
+          {{i.Call}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4>Shape of 2 Cities, New York/Paris</h4>
+
+  <table id="mytable" cellspacing="0" class="table">
+    <tbody>
+      <tr>
+        <th abbr="Course">
+          Course</th>
+        <th abbr="Title">
+          Title</th>
+        <th abbr="Instructor">
+          Instructor</th>
+        <th abbr="Req">
+          Req</th>
+        <th abbr="Sess">
+          Sess</th>
+        <th abbr="Time">
+          Time</th>
+        <th abbr="Points">
+          Points</th>
+        <th abbr="Location">
+          Location</th>
+        <th abbr="Call">
+          Call</th>
+      </tr>
+      
+      <tr ng-controller="CollapseDemoCtrl" ng-repeat="i in myData | filter:query | filter: {type: 'NYP'} | orderBy:['type','Course', 'Sess']">
+
+        <th abbr="Course">
+	  <button class="btn btn-default" style="font-size:inherit;" ng-click="isCollapsed = !isCollapsed">
+	    {{i.Course}}</button>
+          </th>
+        <td abbr="Title" style="width: 400px">
+          <span style="display:none">{{i.type}}</span> {{i.Title}}
+	
+	  <div collapse="isCollapsed">
+	    <div class="well well-lg">
+	      <a href = "http://www.columbia.edu/cu/bulletin/uwb/subj/{{i.SchoolCode}}/A{{i.blink}}" target="_blank">
+		<strong>Link to Bulletin Page</strong></a>
+	      <br>
+	      <br>
+	  <strong>Available Syllabi:</strong>
+	  <ul>
+	    <li>
+	      <a href = "https://courseworks.columbia.edu/public/{{i.cwlink}}/" target="_blank">
+		<strong>Link to Courseworks (Syllabus)</strong></a>
+	    </li>
+	    <li ng-repeat="item in i.Syllabi | orderObjectBy:'wn':true">
+	      <a href = "http://www.columbia.edu/cu/arch/courses/syllabi/{{item.dir}}/{{item.pdfn}}" target="_blank"> {{item.wn}} </a>
+	    </li>
+	  </ul>
+	  
+	    </div> 
+	  </div>
+	
+	</td>
+<!-- 1. "Instructor" changed to a button to dsiplay the studio documents similar to the Syllabi documents -->
+
+
+        <td abbr="Instructor" style="width: 400px">
+	  <button class="btn btn-default" style="font-size:inherit;" ng-click="isCollapsed1 = !isCollapsed1">
+      {{i.Instructor}}</button>
+
+          <span style="display:none">{{i.type}}</span> 
+	
+	  <div collapse="!isCollapsed1">
+	    <div class="well well-lg">
+	  <strong>Images:</strong>
+ 	  <ul>
+	    <li ng-repeat="item in i.images | orderObjectBy:'wn':true">
+	      <a href = "http://www.columbia.edu/cu/arch/courses/images/{{item.dir}}/{{item.pdfn}}" target="_blank"> {{item.wn}}_{{$index + 1}} </a>
+	    </li>
+	  </ul>
+<!-- 2. Added syllabi section under the Images section for the instrcutors to add their own syllabi documents along with the images - intended only for studio documents -->
+      <strong>Instructor's Previous Syllabi:</strong>
+	  <ul>
+	    <li ng-repeat="item in i.facsyl | orderObjectBy:'wn':true">
+	      <a href = "http://www.columbia.edu/cu/arch/courses/facsyl/{{item.dir}}/{{item.pdfn}}" target="_blank"> {{item.wn}} </a>
+	    </li>
+	  </ul>
+	  <br>
+	  
+	    </div> 
+	  </div>
+	</td>
+    
+<!-- End of changes 1 -->
+        <td abbr="Req">
+          {{i.Req}}</td>
+        <td abbr="Sess" class="centerText">
+          {{i.Sess}}</td>
+        <td abbr="Time">
+          {{i.Time}}</td>
+        <td abbr="Points" class="centerText">
+          {{i.Points}}</td>
+        <td abbr="Location">
+          {{i.Location}}</td>
+        <td abbr="Call">
+          {{i.Call}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4>Real Estate</h4>
+
+  <table id="mytable" cellspacing="0" class="table">
+    <tbody>
+      <tr>
+        <th abbr="Course">
+          Course</th>
+        <th abbr="Title">
+          Title</th>
+        <th abbr="Instructor">
+          Instructor</th>
+        <th abbr="Req">
+          Req</th>
+        <th abbr="Sess">
+          Sess</th>
+        <th abbr="Time">
+          Time</th>
+        <th abbr="Points">
+          Points</th>
+        <th abbr="Location">
+          Location</th>
+        <th abbr="Call">
+          Call</th>
+      </tr>
+      
+      <tr ng-controller="CollapseDemoCtrl" ng-repeat="i in myData | filter:query | filter: {type: 'RED'} | orderBy:['type','Course', 'Sess']">
+
+        <th abbr="Course">
+	  <button class="btn btn-default" style="font-size:inherit;" ng-click="isCollapsed = !isCollapsed">
+	    {{i.Course}}</button>
+          </th>
+        <td abbr="Title" style="width: 400px">
+          <span style="display:none">{{i.type}}</span> {{i.Title}}
+	
+	  <div collapse="isCollapsed">
+	    <div class="well well-lg">
+	      <a href = "http://www.columbia.edu/cu/bulletin/uwb/subj/{{i.SchoolCode}}/A{{i.blink}}" target="_blank">
+		<strong>Link to Bulletin Page</strong></a>
+	      <br>
+	      <br>
+	  <strong>Available Syllabi:</strong>
+	  <ul>
+	    <li>
+	      <a href = "https://courseworks.columbia.edu/public/{{i.cwlink}}/" target="_blank">
+		<strong>Link to Courseworks (Syllabus)</strong></a>
+	    </li>
+	    <li ng-repeat="item in i.Syllabi | orderObjectBy:'wn':true">
+	      <a href = "http://www.columbia.edu/cu/arch/courses/syllabi/{{item.dir}}/{{item.pdfn}}" target="_blank"> {{item.wn}} </a>
+	    </li>
+	  </ul>
+	  
+	    </div> 
+	  </div>
+	
+	</td>
+<!-- 1. "Instructor" changed to a button to dsiplay the studio documents similar to the Syllabi documents -->
+
+
+        <td abbr="Instructor" style="width: 400px">
+	  <button class="btn btn-default" style="font-size:inherit;" ng-click="isCollapsed1 = !isCollapsed1">
+      {{i.Instructor}}</button>
+
+          <span style="display:none">{{i.type}}</span> 
+	
+	  <div collapse="!isCollapsed1">
+	    <div class="well well-lg">
+	  <strong>Images:</strong>
+	  <ul>
+	    <li ng-repeat="item in i.images | orderObjectBy:'wn':true">
+	      <a href = "http://www.columbia.edu/cu/arch/courses/images/{{item.dir}}/{{item.pdfn}}" target="_blank"> {{item.wn}}_{{$index + 1}} </a>
+	    </li>
+	  </ul>
+<!-- 2. Added syllabi section under the Images section for the instrcutors to add their own syllabi documents along with the images - intended only for studio documents -->
+      <strong>Instructor's Previous Syllabi:</strong>
+	  <ul>
+	    <li ng-repeat="item in i.facsyl | orderObjectBy:'wn':true">
+	      <a href = "http://www.columbia.edu/cu/arch/courses/facsyl/{{item.dir}}/{{item.pdfn}}" target="_blank"> {{item.wn}} </a>
+	    </li>
+	  </ul>
+	  <br>
+	    </div> 
+	  </div>
+	</td>
+    
+<!-- End of changes 1 -->
+        <td abbr="Req">
+          {{i.Req}}</td>
+        <td abbr="Sess" class="centerText">
+          {{i.Sess}}</td>
+        <td abbr="Time">
+          {{i.Time}}</td>
+        <td abbr="Points" class="centerText">
+          {{i.Points}}</td>
+        <td abbr="Location">
+          {{i.Location}}</td>
+        <td abbr="Call">
+          {{i.Call}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

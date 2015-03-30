@@ -1,0 +1,54 @@
+body {	
+     font-size: 12px; font-family: helvetica, sans-serif; color: #666;
+     margin: 10px;
+     padding-top: 15px;
+     min-height: 0;
+}
+
+input{	
+ line-height:normal;
+}
+
+#mytable tr:hover
+{ 
+  background-color:#e5eecc;
+}
+
+#tableInput, #mytable{
+ font: 10px Arial, Helvetica, sans-serif;
+ text-transform: uppercase;
+ width: 760px;
+ padding: 0;
+ margin: 10px;;
+ border-top: 1px solid #ebebeb;
+
+}
+
+.btn {
+padding: 4px 8px;
+}
+
+.table > tbody > tr > td {
+padding: 4px;
+text-transform: capitalize;
+}
+
+.table > tbody > tr > th{
+padding-left:4px;
+}
+
+.centerText {
+text-align:center;
+}
+
+.well-lg {
+	 padding: 4px;
+	 padding-top: 8px;
+}
+
+	
+.nav, .pagination, .carousel a { cursor: pointer; }
+
+.container{
+margin-top: 20px;
+}
